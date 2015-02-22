@@ -2,8 +2,8 @@
 lines <- readLines('http://www.imdb.com/chart/top')
 movie_lines <- grep(pattern = '\\s{4, }<a href="/title/tt.*/\\?ref_=.*"', x = lines, value = TRUE)
 movie_ab <- sub(pattern = '.*<a href="(/title/tt.*)/\\?ref_=.*"', x = movie_lines, replacement = '\\1')
- directors <- list()
-for(movie in movie_ab[1:3]) {
+directors <- list()
+for(movie in movie_ab[1:250]) {
   url <- paste0('http://www.imdb.com/', movie,'/fullcredits')
   line <- readLines(url)
   title_lines <- grep(pattern ='<meta.*property=.*title.*content=".*".*/>', x = line , value = TRUE)
@@ -16,7 +16,7 @@ directors
 
 # cast
 cast <- list()
-for(movie in movie_ab[1:3]) {
+for(movie in movie_ab[1:250]) {
   url <- paste0('http://www.imdb.com/', movie,'/fullcredits')
   line <- readLines(url)
   title_lines <- grep(pattern ='<meta.*property=.*title.*content=".*".*/>', x = line , value = TRUE)
